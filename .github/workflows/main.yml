@@ -1,0 +1,22 @@
+on: [push]
+
+jobs:
+  example-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install huggingface_hub
+        run: pip install huggingface_hub
+
+      - name: Login to HuggingFace Hub
+        run: echo -e "machine huggingface.co\n  login ${{ secrets.HF_TOKEN }}" > ~/.netrc
+
+      - name: Check if logged in
+        run: huggingface-cli whoami

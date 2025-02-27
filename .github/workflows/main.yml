@@ -13,7 +13,7 @@ jobs:
           python-version: '3.x'
 
       - name: Install huggingface_hub
-        run: pip install huggingface_hub
+        run: pip install huggingface_hub==0.14.1
 
       - name: Login to HuggingFace Hub
         run: echo -e "machine huggingface.co\n  login ${{ secrets.HF_TOKEN }}" > ~/.netrc
